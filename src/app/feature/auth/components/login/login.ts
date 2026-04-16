@@ -36,6 +36,8 @@ export class Login {
 
       this.loginResponse = response;
       console.log('Login successful:', response);
+      window.dispatchEvent(new CustomEvent('navigate-to-shell', { detail: {path: 'view', token: response} }));
+
       // Handle successful login (redirect, store token, etc.)
     } catch (error) {
       this.errorMessage =
