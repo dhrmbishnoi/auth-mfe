@@ -1,0 +1,42 @@
+<form class="login" (ngSubmit)="onLogin()" #loginForm="ngForm">
+  <h2>Welcome, User!</h2>
+  <p>Please log in</p>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <input
+    type="text"
+    placeholder="User Name"
+    [(ngModel)]="username"
+    name="username"
+    required
+  />
+  <input
+    type="password"
+    placeholder="Password"
+    [(ngModel)]="password"
+    name="password"
+    required
+  />
+  <input
+    type="submit"
+    value="Log In"
+    [disabled]="isLoading || loginForm.invalid"
+  />
+
+  <div *ngIf="isLoading" class="loading-message">
+    Logging in...
+  </div>
+
+  <div *ngIf="loginResponse" class="success-message">
+    <p>Welcome, {{ loginResponse.firstName }}!</p>
+    <p>Token: {{ loginResponse.token.substring(0, 20) }}...</p>
+  </div>
+
+  <div class="links">
+    <a href="#">Forgot password</a>
+    <a href="#">Register</a>
+  </div>
+</form>
